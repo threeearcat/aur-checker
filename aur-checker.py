@@ -26,10 +26,10 @@ class aur_checker:
             self.repo = git.Repo(path)
 
         def need_update(self) -> bool:
-            logger.info("checking {}".format(self.name))
+            logger.debug("checking {}".format(self.name))
             origin = self.repo.remote()
             origin.fetch()
-            logger.info("fetch done {}".format(self.name))
+            logger.debug("fetch done {}".format(self.name))
 
             origin_commit_id = origin.refs.master.commit
             local_commit_id = self.repo.refs.master.commit
@@ -63,9 +63,11 @@ class aur_checker:
             notify.show()
 
         total = len(pkgs)
-        title = "{} AUR packages need update".format(total)
-        msg = "\n".join(list(map(lambda x: x.name, pkgs)))
-        notify(title, msg)
+        title = "{} AUR packages need to be updated".format(total)
+        logger.info(title)
+        if total != 0:
+            msg = "\n".join(list(map(lambda x: x.name, pkgs)))
+            notify(title, msg)
 
     def run(self):
         self.collect_pkgs_need_update()
@@ -74,7 +76,7 @@ class aur_checker:
 
 def main(args):
     aur_directory = args.aur_directory
-    logger.info("Check {}".format(aur_directory))
+    logger.debug("Check {}".format(aur_directory))
     checker = aur_checker(directory=aur_directory)
     checker.run()
 
