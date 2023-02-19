@@ -1,3 +1,7 @@
 gitdb==4.0.10
 GitPython==3.1.30
+ruamel.yaml==0.17.21
+ruamel.yaml.clib==0.2.7
 smmap==5.0.0
+vext==0.7.6
+vext.gi==0.7.4
