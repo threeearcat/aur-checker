@@ -2,4 +2,6 @@
 
 dir=$(dirname $(which $0))
 
-(cd $dir; source ./venv/bin/activate; ./aur-checker.py)
+# https://github.com/dunst-project/dunst/issues/634
+# TODO: It seems like the envvars depend on user.
+(cd $dir; source ./venv/bin/activate; DISPLAY=':0' DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus' ./aur-checker.py)
