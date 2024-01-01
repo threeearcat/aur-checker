@@ -71,18 +71,9 @@ class aur_checker:
             msg = "\n".join(list(map(lambda x: x.name, pkgs)))
             notify(title, msg)
 
-    def record_pkgs(self):
-        directory = self.record_directory
-        if not os.path.isdir(directory):
-            return
-        record = os.path.join(directory, "installed", "aur.list")
-        with open(record, "w") as f:
-            f.write("\n".join(self.pkgs))
-
     def run(self):
         self.collect_pkgs_need_update()
         self.print_pkgs_need_update()
-        self.record_pkgs()
 
 
 def main(args):
