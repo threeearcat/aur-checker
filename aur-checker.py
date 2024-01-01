@@ -18,6 +18,10 @@ from gi.repository import Notify
 Notify.init("AUR checker")
 
 
+''' My aur package checker. Run this script periodically by using
+crontab.
+crontab entry: * 11 * * * ~/.aur-checker/EXECUTE
+'''
 class aur_checker:
     class aur_package:
         def __init__(self, path: str):
