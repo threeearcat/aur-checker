@@ -20,7 +20,7 @@ Notify.init("AUR checker")
 
 ''' My aur package checker. Run this script periodically by using
 crontab.
-crontab entry: * 11 * * * ~/.aur-checker/EXECUTE
+crontab entry: 0 11 * * * ~/.aur-checker/EXECUTE
 '''
 class aur_checker:
     class aur_package:
